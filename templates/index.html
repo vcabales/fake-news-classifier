@@ -25,12 +25,12 @@ body {font-size:16px;}
   </div>
   <div class="w3-bar-block">
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Introduction</a>
-    <a href="#results" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Approach</a>
-    <a href="#takeaways" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Results</a>
+    <a href="#approach" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Approach</a>
+    <a href="#results" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Results</a>
   </div>
 	<footer>
 		<a href="/report" target="blank"><span id="report" class="glyphicon glyphicon-book"></span></a>
-		<a href="mailto:victoriacabales2019@u.northwestern.edu" target="blank"><span id="mail" class="glyphicon glyphicon-envelope"></span></a>
+		<a href="mailto:victoriacabales2019@u.northwestern.edu,ilhamnurjadin2019@u.northwestern.edu,matthewzhang2018@u.northwestern.edu" target="blank"><span id="mail" class="glyphicon glyphicon-envelope"></span></a>
 		<a href="https://github.com/vcabales/fake-news-classifier" target="blank"><img id="github" src="{{url_for('static', filename='GitHub-Mark-Light-32px.png')}}" /></a>
 	</footer>
 </nav>
@@ -67,14 +67,14 @@ body {font-size:16px;}
   </div>
 
   <!-- Results -->
-  <div class="w3-container" id="results" style="margin-top:75px">
+  <div class="w3-container" id="approach" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Approach</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
     <p style="text-align: justify">Our approach involved trying various combinations of vectorizers and learners, primarily from scikit-learn, to see which yielded the best accuracy. We used a bag-of-words model, counting the frequency of each word in an article to determine if it is a feature for training a classifier. The three vectorizers we used for this were the Count Vectorizer, TF-IDF Vectorizer, and Hashing Vectorizer; the four learners we used were ZeroR, Multinomial Bayes, Passive Aggressive Classifiers, Logistic Regression and Nearest Neighbor.</p>
   </div>
 
   <!-- Packages / Pricing Tables -->
-  <div class="w3-container" id="takeaways" style="margin-top:75px">
+  <div class="w3-container" id="results" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Results</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
 		<table id="accuracy">
@@ -126,7 +126,7 @@ body {font-size:16px;}
 		</table>
     <br />
     <p style="text-align:justify">As can be seen above, we found that the combination of a TF-IDF Vectorizer and a Passive Aggressive Classifier with bigrams yielded the highest accuracy of 93.9%. </p>
-    <p style="text-align:justify">Additionally, our TF-IDF and Passive Aggressive Classifier provided some other interesting results: the top three words associated with fake articles were ‘October’, ‘Hillary’ and ‘share’, while the top three words associated with real articles were ‘said’, ‘says’ and ‘Fridays’.</p>
+    <p style="text-align:justify">Additionally, our tf-idf and Passive Aggressive Classifier provided some other interesting results: the top three words associated with fake articles were ‘October’, ‘Hillary’ and ‘share’, while the top three words associated with real articles were ‘said’, ‘says’ and ‘Fridays’.</p>
     <p style="text-align:justify">More analysis of our findings can be found in our <a href="/report" target="blank">final report.</a></p>
     <br />
   </div>
