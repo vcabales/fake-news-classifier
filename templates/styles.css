@@ -1,0 +1,21 @@
+nav > footer {
+  margin-left: 15px;
+  margin-top: 20px;
+}
+
+#github {
+  right:0;
+  top: -5px;
+  width:1em;
+  margin-left:10px;
+  margin-top:-7px;
+}
+
+#mail {
+  padding-left: 1rem;
+  color: white;
+}
+
+#report {
+  color: white;
+}

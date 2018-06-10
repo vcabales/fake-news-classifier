@@ -1,12 +1,115 @@
 <!DOCTYPE html>
 <html>
-<title>Fake News Classifier App</title>
+<title>Fake News Analysis</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.css">
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+</style>
 <body>
 
-<form action = "/predict" method="POST">
-	<p> Title:<input name="title" type ="text" value="Article Headline" /> </p>
-	<p> Text: <input name="text" type ="text" value="Article Body" /> </p>
-	<p> <input type ="submit" value="submit" /> </p>
-</form>
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:250px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>Fake News<br>Analysis</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Introduction</a>
+    <a href="#results" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Results</a>
+    <a href="#takeaways" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Takeaways</a>
+  </div>
+	<footer>
+		<a href="./report.html" target="blank"><span id="report" class="glyphicon glyphicon-book"></span></a>
+		<a href="mailto:victoriacabales2019@u.northwestern.edu" target="blank"><span id="mail" class="glyphicon glyphicon-envelope"></span></a>
+		<a href="https://github.com/vcabales/fake-news-classifier" target="blank"><img id="github" src="./img/GitHub-Mark-Light-32px.png" /></a>
+	</footer>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Fake News Analysis</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:275px;margin-right:40px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="showcase">
+    <h1 class="w3-jumbo"><b>Fake News Analysis</b></h1>
+		<p>A project by Victoria Cabales, Matthew Zhang, and Ilham Nurjadin <br>
+		Northwestern University, EECS 349 Machine Learning</p>
+    <h1 class="w3-xxxlarge w3-text-red"><b>Introduction</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+		<a href="./report.html" target="blank"><h3>View full report here. </h3></a>
+
+		<br/>
+		<h4><b>Motivation</b></h4>
+		<p style="text-align: justify"> The goal of our project is to build a classifier that can identify whether a news article is fake or real, based on the text and title content of each article. We believe this task is important because misinformation and fake news plays a huge role in influencing social media interactions and democratic processes, as seen by the controversy surrounding the 2016 presidential election. Being able to detect if a news article is ‘real’ or not would be extremely useful to many social media platforms, who could use these machine learning methods to suppress viral fake news articles circulating on their websites, and thereby limit the flow of misinformation online.</p>
+
+		<br/>
+		<h4><b>Dataset</b></h4>
+		<p style="text-align: justify">We found a dataset online containing 11,000 articles - specifically, the article’s title, text and a classification denoting whether the article is ‘real’ or ‘fake’. An article is defined as ‘real’ is one that has been written in a factual manner, and is consistent with ethical journalism practices; an article is defined as ‘fake’ if it is not ‘real’, including but not limited to satire, opinion pieces, and conspiracies.</p>
+  </div>
+
+  <!-- Results -->
+  <div class="w3-container" id="results" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Results</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>The best team in the world.</p>
+    <p>We are lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
+    incididunt ut labore et quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+
+  </div>
+
+  <!-- Packages / Pricing Tables -->
+  <div class="w3-container" id="takeaways" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Takeaways</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>Some text our prices. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure</p>
+  </div>
+
+<!-- End page content -->
+</div>
+
+
+<script src="./js/lda.js"></script>
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+</script>
+
 </body>
 </html>
