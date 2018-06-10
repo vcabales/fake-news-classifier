@@ -15,64 +15,179 @@ body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
 .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
 .w3-half img:hover{opacity:1}
+
+#fig3 img{
+  width: 33%;
+  display: inline;
+}
+
+
 </style>
 <body>
-  <table id="accuracy">
-    <tr>
-      <th style="padding-left:10px" class="w3-dark-grey w3-large w3-padding-16 w3-center">Vectorizer</th>
-      <th class="w3-dark-grey w3-large w3-padding-16 w3-center">Classifier</th>
-      <th style="padding-right:10px" class="w3-dark-grey w3-large w3-padding-16 w3-center">Accuracy</th>
-    </tr>
-    <tr>
-      <th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
-      <th class="w3-light-grey w3-center w3-padding-16">ZeroR</th>
-      <th class="w3-light-grey w3-center w3-padding-16">50.1%</th>
-    </tr>
-    <tr>
-      <th class="w3-light-grey w3-center w3-padding-16">Count</th>
-      <th class="w3-light-grey w3-center w3-padding-16">Multinomial NB</th>
-      <th class="w3-light-grey w3-center w3-padding-16">85.9%</th>
-    </tr>
-    <tr>
-      <th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
-      <th class="w3-light-grey w3-center w3-padding-16">Multinomial NB</th>
-      <th class="w3-light-grey w3-center w3-padding-16">85.9%</th>
-    </tr>
-    <tr>
-      <th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
-      <th class="w3-light-grey w3-center w3-padding-16">Passive Aggressive</th>
-      <th class="w3-light-grey w3-center w3-padding-16">93.3%</th>
-    </tr>
-    <tr>
-      <th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
-      <th class="w3-light-grey w3-center w3-padding-16">Passive Aggressive + Bigrams</th>
-      <th class="w3-light-grey w3-center w3-padding-16">93.9%</th>
-    </tr>
-    <tr>
-      <th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
-      <th class="w3-light-grey w3-center w3-padding-16">Logistic Regression</th>
-      <th class="w3-light-grey w3-center w3-padding-16">91.1%</th>
-    </tr>
-    <tr>
-      <th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
-      <th class="w3-light-grey w3-center w3-padding-16">KNN</th>
-      <th class="w3-light-grey w3-center w3-padding-16">54.9%</th>
-    </tr>
-    <tr>
-      <th class="w3-light-grey w3-center w3-padding-16">Hashing</th>
-      <th class="w3-light-grey w3-center w3-padding-16">Multinomial NB</th>
-      <th class="w3-light-grey w3-center w3-padding-16">90.1%</th>
-    </tr>
-  </table>
 
-  <h2>General Corpus LDA </h2>
-  <div id="ldavis_el55961119534020404424994992"></div>
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:50px;margin-right:150px">
 
-  <h2>Fake News LDA </h2>
-  <div id="ldavis_el55961158206948883905458316"></div>
+    <!-- Header -->
+    <div class="w3-container" style="margin-top:20px" id="showcase">
+      <h1 class="w3-jumbo"><b>Fake News Analysis</b></h1>
+      <p style="font-size:25px">Full Report</p>
+  		<p>A project by Victoria Cabales, Matthew Zhang, and Ilham Nurjadin <br>
+  		Northwestern University, EECS 349 Machine Learning</p>
+      <h1 class="w3-xxxlarge w3-text-red"><b>Introduction</b></h1>
+      <hr style="width:50px;border:5px solid red" class="w3-round">
 
-  <h2>Real News LDA </h2>
-  <div id="ldavis_el55961158206947688572160412"></div>
+  		<br/>
+  		<h4><b>Motivation</b></h4>
+  		<p style="text-align: justify"> The goal of our project was to build a classifier that can identify whether a news article is fake or real, based on the text and title content of each article. We believe this task is important because misinformation and fake news play a huge role in influencing social media interactions and democratic processes, as seen by the extent to which fake news affected the discourse surrounding the 2016 presidential election. Being able to detect if a news article is ‘real’ or not would be extremely useful to many social media platforms, who could use these machine learning methods to suppress viral fake news articles circulating on their websites, and thereby limit the flow of misinformation online.</p>
+
+  		<br/>
+  		<h4><b>Dataset</b></h4>
+  		<p style="text-align: justify">We found a dataset online containing 11,000 articles - specifically, the article’s title, text and a classification denoting whether the article is ‘real’ or ‘fake’. An article is defined as ‘real’ is one that has been written in a factual manner, and is consistent with ethical journalism practices; an article is defined as ‘fake’ if it is not ‘real’, including but not limited to satire, opinion pieces, and conspiracies.</p>
+  		<br/>
+  		<p style="text-align: justify">The labels in this dataset were analyzed and produced by <a href="http://www.opensources.co/" target="blank">OpenSources</a>, an organization that compiles professionally curated lists of unreliable or otherwise questionable sources. Each article has a varying set of word counts, varying from approximately 100 to 500 words on average. </p>
+    </div>
+
+    <!-- Results -->
+    <div class="w3-container" id="results" style="margin-top:30px">
+      <h1 class="w3-xxxlarge w3-text-red"><b>Approach</b></h1>
+      <hr style="width:50px;border:5px solid red" class="w3-round">
+      <br/>
+  		<h4><b>Baseline</b></h4>
+      <p style="text-align: justify">Before performing any other machine learning tasks, we first ran ZeroR, which gave us an accuracy of 50.1%. This gave us a baseline number to compare against, to ensure that our methods are indeed performing better than the ‘simplest’ classifier possible.</p>
+      <br/>
+      <h4><b>Preprocessing</b></h4>
+      <p style="text-align: justify">The first step we took to analyze our data was to apply preprocessing methods. Our dataset included some numerical and non-English phrases, but since we were mostly interested in using English word attributes to classify articles, we filtered out numbers and non-English characters. We also applied stop word filtering, to reduce the impact non-significant words would have on our models, as well as lemmatization, so that words that had the same root would be classified under the same category.</p>
+      <br/>
+      <h4><b>Feature Extraction</b></h4>
+      <p style="text-align: justify">After we applied these preprocessing methods, we then moved on to extracting features from our dataset. Since our dataset was primarily composed of large batches of text, and our approach was centered around detecting which words were most significant in classifying the veracity of the article, we decided to go with the ‘bag of words’ approach to feature extraction: counting the frequency of each word in an article to determine if it is a feature for training a classifier. Using scikit-learn, we extracted features from our dataset using a count vectorizer, a tf-idf vectorizer, and a hash vectorizer. We also converted each feature into both unigram and bigram models, just to test if splitting the data using varying n-grams would improve the accuracy of our models.</p>
+      <br/>
+      <h4><b>Models Used</b></h4>
+      <p style="text-align: justify">Finally, after feature extraction, we moved on to actually inputting our features into various models, and testing which models performed best. The four learners we used were Multinomial Bayes, Passive Aggressive Classifiers, Logistic Regression, and Nearest Neighbor models. For each model, we experimented with some of the different parameters, such as alpha values and the number of iterations, to see which parameters would give us the best results. To train and test our data, we randomly partitioned our dataset into thirds, so that two-thirds of our dataset was used for training, and one-third of our dataset was used for testing.</p>
+      <br/>
+    </div>
+
+    <!-- Packages / Pricing Tables -->
+    <div class="w3-container" id="takeaways" style="margin-top:30px">
+      <h1 class="w3-xxxlarge w3-text-red"><b>Results and Analysis</b></h1>
+      <hr style="width:50px;border:5px solid red" class="w3-round">
+  		<table id="accuracy">
+  			<tr>
+  				<th style="padding-left:10px" class="w3-dark-grey w3-large w3-padding-16 w3-center">Vectorizer</th>
+  				<th class="w3-dark-grey w3-large w3-padding-16 w3-center">Classifier</th>
+  				<th style="padding-right:10px" class="w3-dark-grey w3-large w3-padding-16 w3-center">Accuracy</th>
+  			</tr>
+        <tr>
+          <th class="w3-light-grey w3-center w3-padding-16">N/A</th>
+          <th class="w3-light-grey w3-center w3-padding-16">ZeroR</th>
+          <th class="w3-light-grey w3-center w3-padding-16">50.1%</th>
+        </tr>
+  			<tr>
+  				<th class="w3-light-grey w3-center w3-padding-16">Count</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">Multinomial NB</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">85.9%</th>
+  			</tr>
+  			<tr>
+  				<th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">Multinomial NB</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">85.9%</th>
+  			</tr>
+  			<tr>
+  				<th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">Passive Aggressive</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">93.3%</th>
+  			</tr>
+  			<tr>
+  				<th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">Passive Aggressive + Bigrams</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">93.9%</th>
+  			</tr>
+  			<tr>
+  				<th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">Logistic Regression</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">91.1%</th>
+  			</tr>
+  			<tr>
+  				<th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">KNN</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">54.9%</th>
+  			</tr>
+  			<tr>
+  				<th class="w3-light-grey w3-center w3-padding-16">Hashing</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">Multinomial NB</th>
+  				<th class="w3-light-grey w3-center w3-padding-16">93.9%</th>
+  			</tr>
+  		</table>
+      <p style="font-style:italic">Figure 1</p>
+
+      <br>
+
+      <p style="text-align: justify">Figure 1 shows the accuracies of the various approaches that we have used to create our classifier. Overall, apart from ZeroR (as it is our baseline) and Nearest Neighbors, most of the approaches performed fairly well, achieving an accuracy upwards of 85%. As we can see, a TF-IDF Vectorizer and Passive Aggressive Classifier produces the highest accuracy, and using bigrams slightly increases that accuracy to 93.9%. Additionally, based on the ROC curves and confusion matrices below, the passive aggressive classifier visibly has the highest rate of true negatives and positives as compared to false negatives and positives in the confusion matrices, as well as the highest area under the curve for the ROC curves.</p>
+
+      <div id="fig3">
+        <img src="/static/pa_roc.png" / >
+        <img src="/static/knn_roc.png" / >
+        <img src="/static/multinb_roc.png" / >
+        <p style="font-style:italic; text-align: center">Figure 2</p>
+      </div>
+
+      <br>
+
+      <div id="fig3">
+        <img src="/static/tfidf_pa_bigrams.png" / >
+        <img src="/static/tfidf_knn.png" / >
+        <img src="/static/tfidf_multi_nb.png" / >
+        <p style="font-style:italic; text-align: center">Figure 3</p>
+      </div>
+
+      <br>
+
+
+      <p style="text-align: justify"> We based our decision to use the Passive Aggressive Classifier on the fact that, based on our research, it is particularly good when attempting to classify very large streams of data, like data from Twitter. Since we also have a large stream of data in the form of text from news articles, we expected that the classifier have a fairly good level of accuracy. </p>
+
+      <p style="text-align: justify"> Moreover, the switch to a bigram model proved to be successful in increasing accuracy. The TF-IDF vectorizer initially used an n-gram model: this means that the probability of observing the ith word in an article is based on the i-1 words that came before it. A bigram model assumes that this probability only depends on the word that came before it. This makes sense that a bigram model could increase accuracy over an n-gram one, since the occurrence of a word may not always depend on every single word that came before it. In the end, it is a balance between looking at enough previous words to encapsulate context well, and looking at too many previous words that some words are no longer important to context. </p>
+
+      <p style="text-align: justify"> Additionally, the accuracy of Multinomial Naive Bayes did not improve when switching from a Count Vectorizer to a TF-IDF Vectorizer - we hypothesized that since we already removed stop words in our preprocessing, removing frequently appearing words wouldn’t have much effect. </p>
+
+      <h2>Fake News LDA (Figure 4)</h2>
+      <div id="ldavis_el55961158206948883905458316"></div>
+
+      <h2>Real News LDA (Figure 5)</h2>
+      <div id="ldavis_el55961158206947688572160412"></div>
+
+      <p style="text-align: justify"> Using the TF-IDF and Passive Aggressive Classifiers, we were able to generate a list of words most associated ‘real’ and ‘fake’ articles, as shown in Figures 4 and 5. Interestingly, the top three words associated with fake articles were ‘October’, ‘Hillary’ and ‘share’, while the top three words associated with real articles were ‘said’, ‘says’ and ‘Fridays’. We believe it makes sense that ‘Hillary’ is one of the words most associated with fake articles - a lot of the articles were drawn around the build up to the 2016 presidential election, where there was a lot of controversy, presumably resulting in a lot of articles about the subject. </p>
+
+    </div>
+
+
+    <!-- Results -->
+    <div class="w3-container" id="results" style="margin-top:30px">
+      <h1 class="w3-xxxlarge w3-text-red"><b>Conclusion</b></h1>
+      <hr style="width:50px;border:5px solid red" class="w3-round">
+      <br/>
+  		<h4><b>Future Work</b></h4>
+      <p style="text-align: justify">Aside from just the text and title of the articles themselves, there are a number of other features that we could have looked at to determine whether or not an article is ‘real’ or ‘fake’. For instance, the website the article is published on could help with our analysis - if the website is has a reputation for producing satire pieces (e.g. the Onion) or has a history of producing ‘fake’ articles, that could potentially help us build a better classifier.</p>
+      <p style="text-align: justify">It would also be an interesting experiment to apply our model in an actual application, such as using our most accurate classifier in a Google Chrome extension, which could tell you whether it thinks an article on a Facebook or Twitter news feeds is fake or not. Not only would this help us analyze how accurate our model is in a live context, rather than just with a pre-compiled testing dataset, it would also be an interesting social experiment to see how people might respond when articles can be classified as fake or not on their news feeds.</p>
+      <br/>
+
+      <h4><b>Additional Details</b></h4>
+      <p style="text-align: justify">This project was done by Victoria Cabales, Matthew Zhang, and Ilham Nurjadin. Victoria worked on making the website, setting up most of the Jupyter Notebook models and analyses, and developing some of the result visualizations; Matthew worked on converting feature data into bigrams, developing the logistic regression/KNN models, and some of the final report; and Ilham worked on preprocessing the data, and writing up the bulk of the final report.</p>
+      <p style="text-align: justify">Most of our analysis was done using Jupyter Notebook - our code and data files can be viewed on our <a href="https://github.com/vcabales/fake-news-classifier">GitHub repo.</a></p>
+      <p style="text-align: justify">Thanks for reading! (: </p>
+      <br/>
+
+    </div>
+
+
+  <!-- End page content -->
+  </div>
+
+
+
+  <!-- <h2>General Corpus LDA </h2>
+  <div id="ldavis_el55961119534020404424994992" style="width:100%"></div> -->
+
+
 
 </body>
 </html>
