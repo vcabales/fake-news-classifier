@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, jsonify
-from sklearn.externals import joblib
-import pandas as pd
-import numpy as np
+# from sklearn.externals import joblib
+# import pandas as pd
+# import numpy as np
 
 app = Flask(__name__, template_folder='./templates')
 
