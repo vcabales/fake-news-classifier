@@ -140,7 +140,7 @@ body {font-size:16px;}
         <img src="/static/pa_roc.png" / >
         <img src="/static/knn_roc.png" / >
         <img src="/static/multinb_roc.png" / >
-        <p style="font-style:italic; text-align: center">Figure 2</p>
+        <p style="font-style:italic; text-align: center">Figure 4</p>
       </div>
 
       <br>
@@ -149,7 +149,7 @@ body {font-size:16px;}
         <img src="/static/tfidf_pa_bigrams.png" / >
         <img src="/static/tfidf_knn.png" / >
         <img src="/static/tfidf_multi_nb.png" / >
-        <p style="font-style:italic; text-align: center">Figure 3</p>
+        <p style="font-style:italic; text-align: center">Figure 5</p>
       </div>
 
       <br>
@@ -161,21 +161,16 @@ body {font-size:16px;}
 
       <p style="text-align: justify"> Additionally, the accuracy of Multinomial Naive Bayes did not improve when switching from a Count Vectorizer to a TF-IDF Vectorizer - we hypothesized that since we already removed stop words in our preprocessing, removing frequently appearing words wouldn’t have much effect. </p>
 
-      <p style="text-align: justify"> We were also able to generate a list of words that are most associated with ‘real’ and ‘fake’ news. Shown below in figures 4 and 5 are the results of the topic modelling performed with LDA, portraying one possible list of words most associated with the ‘real’ and ‘fake’ news. </p>
-
-      <h2>Fake News LDA (Figure 4)</h2>
-      <div id="ldavis_el55961158206948883905458316"></div>
-
       <div class="fig2">
         <img src="/static/real-words.png" / >
         <img src="/static/fake-words.png" / >
-        <p style="font-style:italic; text-align: center">Figure 4</p>
+        <p style="font-style:italic; text-align: center">Figure 6</p>
       </div>
 
       <br>
 
 
-      <p style="text-align: justify"> Using the TF-IDF and Passive Aggressive Classifiers, we were able to generate another list of words most associated ‘real’ and ‘fake’ articles, as shown in Figure 4. Interestingly, the top three words associated with fake articles were ‘October’, ‘Hillary’ and ‘share’, while the top three words associated with real articles were ‘said’, ‘says’ and ‘Fridays’. We believe it makes sense that ‘Hillary’ is one of the words most associated with fake articles - a lot of the articles were drawn around the build up to the 2016 presidential election, where there was a lot of controversy, presumably resulting in a lot of articles about the subject. </p>
+      <p style="text-align: justify"> Using the TF-IDF and Passive Aggressive Classifiers, we were able to generate another list of words most associated ‘real’ and ‘fake’ articles, as shown in Figure 6. Interestingly, the top three words associated with fake articles were ‘October’, ‘Hillary’ and ‘share’, while the top three words associated with real articles were ‘said’, ‘says’ and ‘Fridays’. We believe it makes sense that ‘Hillary’ is one of the words most associated with fake articles - a lot of the articles were drawn around the build up to the 2016 presidential election, where there was a lot of controversy, presumably resulting in a lot of articles about the subject. </p>
 
     </div>
 
