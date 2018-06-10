@@ -75,7 +75,7 @@ body {font-size:16px;}
 
       <br/>
       <h4><b>Models Used</b></h4>
-      <p style="text-align: justify">Finally, after feature extraction, we moved on to actually inputting our features into various models, and testing which models performed best. The four learners we used were Multinomial Bayes, Passive Aggressive Classifiers, Logistic Regression, and Nearest Neighbor models. For each model, we experimented with some of the different parameters, such as alpha values and the number of iterations, to see which parameters would give us the best results. To train and test our data, we randomly partitioned our dataset into thirds, so that two-thirds of our dataset was used for training, and one-third of our dataset was used for testing.</p>
+      <p style="text-align: justify">Finally, after feature extraction, we moved on to actually inputting our features into various models, and testing which models performed best. The four learners we used were Multinomial Bayes, Passive Aggressive Classifiers, Logistic Regression, and Nearest Neighbor models. For each model, we experimented with some of the different parameters, such as alpha values and the number of iterations, to see which parameters would give us the best results. We also tried topic modelling using a Latent Dirichlet Allocation (LDA). To train and test our data, we randomly partitioned our dataset into thirds, so that two-thirds of our dataset was used for training, and one-third of our dataset was used for testing.</p>
       <br/>
     </div>
 
@@ -161,6 +161,10 @@ body {font-size:16px;}
 
       <p style="text-align: justify"> Additionally, the accuracy of Multinomial Naive Bayes did not improve when switching from a Count Vectorizer to a TF-IDF Vectorizer - we hypothesized that since we already removed stop words in our preprocessing, removing frequently appearing words wouldn’t have much effect. </p>
 
+      <p style="text-align: justify"> We were also able to generate a list of words that are most associated with ‘real’ and ‘fake’ news. Shown below in figures 4 and 5 are the results of the topic modelling performed with LDA, portraying one possible list of words most associated with the ‘real’ and ‘fake’ news. </p>
+
+      <h2>Fake News LDA (Figure 4)</h2>
+      <div id="ldavis_el55961158206948883905458316"></div>
 
       <div class="fig2">
         <img src="/static/real-words.png" / >
