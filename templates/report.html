@@ -16,8 +16,13 @@ body {font-size:16px;}
 .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
 .w3-half img:hover{opacity:1}
 
-#fig3 img{
+.fig img{
   width: 33%;
+  display: inline;
+}
+
+.fig2 img{
+  width: 40%;
   display: inline;
 }
 
@@ -60,7 +65,14 @@ body {font-size:16px;}
       <p style="text-align: justify">The first step we took to analyze our data was to apply preprocessing methods. Our dataset included some numerical and non-English phrases, but since we were mostly interested in using English word attributes to classify articles, we filtered out numbers and non-English characters. We also applied stop word filtering, to reduce the impact non-significant words would have on our models, as well as lemmatization, so that words that had the same root would be classified under the same category.</p>
       <br/>
       <h4><b>Feature Extraction</b></h4>
-      <p style="text-align: justify">After we applied these preprocessing methods, we then moved on to extracting features from our dataset. Since our dataset was primarily composed of large batches of text, and our approach was centered around detecting which words were most significant in classifying the veracity of the article, we decided to go with the ‘bag of words’ approach to feature extraction: counting the frequency of each word in an article to determine if it is a feature for training a classifier. Using scikit-learn, we extracted features from our dataset using a count vectorizer, a tf-idf vectorizer, and a hash vectorizer. We also converted each feature into both unigram and bigram models, just to test if splitting the data using varying n-grams would improve the accuracy of our models.</p>
+      <p style="text-align: justify">After we applied these preprocessing methods, we then moved on to extracting features from our dataset. Since our dataset was primarily composed of large batches of text, and our approach was centered around detecting which words were most significant in classifying the veracity of the article, we decided to go with the ‘bag of words’ approach to feature extraction: counting the frequency of each word in an article to determine if it is a feature for training a classifier. Using scikit-learn, we extracted features from our dataset using a count vectorizer, a tf-idf vectorizer, and a hash vectorizer. We also converted each feature into both unigram and bigram models, just to test if splitting the data using varying n-grams would improve the accuracy of our models. Shown below in figures 1 and 2 are the results of the topic modelling performed with LDA, portraying one possible list of words most associated with the ‘real’ and ‘fake’ news.</p>
+
+      <h2>Fake News LDA (Figure 1)</h2>
+      <div id="ldavis_el55961158206948883905458316"></div>
+
+      <h2>Real News LDA (Figure 2)</h2>
+      <div id="ldavis_el55961158206947688572160412"></div>
+
       <br/>
       <h4><b>Models Used</b></h4>
       <p style="text-align: justify">Finally, after feature extraction, we moved on to actually inputting our features into various models, and testing which models performed best. The four learners we used were Multinomial Bayes, Passive Aggressive Classifiers, Logistic Regression, and Nearest Neighbor models. For each model, we experimented with some of the different parameters, such as alpha values and the number of iterations, to see which parameters would give us the best results. To train and test our data, we randomly partitioned our dataset into thirds, so that two-thirds of our dataset was used for training, and one-third of our dataset was used for testing.</p>
@@ -118,13 +130,13 @@ body {font-size:16px;}
   				<th class="w3-light-grey w3-center w3-padding-16">93.9%</th>
   			</tr>
   		</table>
-      <p style="font-style:italic">Figure 1</p>
+      <p style="font-style:italic">Figure 3</p>
 
       <br>
 
-      <p style="text-align: justify">Figure 1 shows the accuracies of the various approaches that we have used to create our classifier. Overall, apart from ZeroR (as it is our baseline) and Nearest Neighbors, most of the approaches performed fairly well, achieving an accuracy upwards of 85%. As we can see, a TF-IDF Vectorizer and Passive Aggressive Classifier produces the highest accuracy, and using bigrams slightly increases that accuracy to 93.9%. Additionally, based on the ROC curves and confusion matrices below, the passive aggressive classifier visibly has the highest rate of true negatives and positives as compared to false negatives and positives in the confusion matrices, as well as the highest area under the curve for the ROC curves.</p>
+      <p style="text-align: justify">Figure 3 shows the accuracies of the various approaches that we have used to create our classifier. Overall, apart from ZeroR (as it is our baseline) and Nearest Neighbors, most of the approaches performed fairly well, achieving an accuracy upwards of 85%. As we can see, a TF-IDF Vectorizer and Passive Aggressive Classifier produces the highest accuracy, and using bigrams slightly increases that accuracy to 93.9%. Additionally, based on the ROC curves and confusion matrices below, the passive aggressive classifier visibly has the highest rate of true negatives and positives as compared to false negatives and positives in the confusion matrices, as well as the highest area under the curve for the ROC curves.</p>
 
-      <div id="fig3">
+      <div class="fig">
         <img src="/static/pa_roc.png" / >
         <img src="/static/knn_roc.png" / >
         <img src="/static/multinb_roc.png" / >
@@ -133,7 +145,7 @@ body {font-size:16px;}
 
       <br>
 
-      <div id="fig3">
+      <div class="fig">
         <img src="/static/tfidf_pa_bigrams.png" / >
         <img src="/static/tfidf_knn.png" / >
         <img src="/static/tfidf_multi_nb.png" / >
@@ -149,13 +161,17 @@ body {font-size:16px;}
 
       <p style="text-align: justify"> Additionally, the accuracy of Multinomial Naive Bayes did not improve when switching from a Count Vectorizer to a TF-IDF Vectorizer - we hypothesized that since we already removed stop words in our preprocessing, removing frequently appearing words wouldn’t have much effect. </p>
 
-      <h2>Fake News LDA (Figure 4)</h2>
-      <div id="ldavis_el55961158206948883905458316"></div>
 
-      <h2>Real News LDA (Figure 5)</h2>
-      <div id="ldavis_el55961158206947688572160412"></div>
+      <div class="fig2">
+        <img src="/static/real-words.png" / >
+        <img src="/static/fake-words.png" / >
+        <p style="font-style:italic; text-align: center">Figure 4</p>
+      </div>
 
-      <p style="text-align: justify"> Using the TF-IDF and Passive Aggressive Classifiers, we were able to generate a list of words most associated ‘real’ and ‘fake’ articles, as shown in Figures 4 and 5. Interestingly, the top three words associated with fake articles were ‘October’, ‘Hillary’ and ‘share’, while the top three words associated with real articles were ‘said’, ‘says’ and ‘Fridays’. We believe it makes sense that ‘Hillary’ is one of the words most associated with fake articles - a lot of the articles were drawn around the build up to the 2016 presidential election, where there was a lot of controversy, presumably resulting in a lot of articles about the subject. </p>
+      <br>
+
+
+      <p style="text-align: justify"> Using the TF-IDF and Passive Aggressive Classifiers, we were able to generate another list of words most associated ‘real’ and ‘fake’ articles, as shown in Figure 4. Interestingly, the top three words associated with fake articles were ‘October’, ‘Hillary’ and ‘share’, while the top three words associated with real articles were ‘said’, ‘says’ and ‘Fridays’. We believe it makes sense that ‘Hillary’ is one of the words most associated with fake articles - a lot of the articles were drawn around the build up to the 2016 presidential election, where there was a lot of controversy, presumably resulting in a lot of articles about the subject. </p>
 
     </div>
 
