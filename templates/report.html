@@ -18,6 +18,54 @@ body {font-size:16px;}
 .w3-half img:hover{opacity:1}
 </style>
 <body>
+  <table id="accuracy">
+    <tr>
+      <th style="padding-left:10px" class="w3-dark-grey w3-large w3-padding-16 w3-center">Vectorizer</th>
+      <th class="w3-dark-grey w3-large w3-padding-16 w3-center">Classifier</th>
+      <th style="padding-right:10px" class="w3-dark-grey w3-large w3-padding-16 w3-center">Accuracy</th>
+    </tr>
+    <tr>
+      <th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
+      <th class="w3-light-grey w3-center w3-padding-16">ZeroR</th>
+      <th class="w3-light-grey w3-center w3-padding-16">50.1%</th>
+    </tr>
+    <tr>
+      <th class="w3-light-grey w3-center w3-padding-16">Count</th>
+      <th class="w3-light-grey w3-center w3-padding-16">Multinomial NB</th>
+      <th class="w3-light-grey w3-center w3-padding-16">85.9%</th>
+    </tr>
+    <tr>
+      <th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
+      <th class="w3-light-grey w3-center w3-padding-16">Multinomial NB</th>
+      <th class="w3-light-grey w3-center w3-padding-16">85.9%</th>
+    </tr>
+    <tr>
+      <th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
+      <th class="w3-light-grey w3-center w3-padding-16">Passive Aggressive</th>
+      <th class="w3-light-grey w3-center w3-padding-16">93.3%</th>
+    </tr>
+    <tr>
+      <th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
+      <th class="w3-light-grey w3-center w3-padding-16">Passive Aggressive + Bigrams</th>
+      <th class="w3-light-grey w3-center w3-padding-16">93.9%</th>
+    </tr>
+    <tr>
+      <th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
+      <th class="w3-light-grey w3-center w3-padding-16">Logistic Regression</th>
+      <th class="w3-light-grey w3-center w3-padding-16">91.1%</th>
+    </tr>
+    <tr>
+      <th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
+      <th class="w3-light-grey w3-center w3-padding-16">KNN</th>
+      <th class="w3-light-grey w3-center w3-padding-16">54.9%</th>
+    </tr>
+    <tr>
+      <th class="w3-light-grey w3-center w3-padding-16">Hashing</th>
+      <th class="w3-light-grey w3-center w3-padding-16">Multinomial NB</th>
+      <th class="w3-light-grey w3-center w3-padding-16">90.1%</th>
+    </tr>
+  </table>
+
   <h2>General Corpus LDA </h2>
   <div id="ldavis_el55961119534020404424994992"></div>
 

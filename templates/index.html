@@ -63,7 +63,6 @@ body {font-size:16px;}
 		<br/>
 		<h4><b>Dataset</b></h4>
 		<p style="text-align: justify">We found a dataset online containing 11,000 articles - specifically, the article’s title, text and a classification denoting whether the article is ‘real’ or ‘fake’. An article is defined as ‘real’ is one that has been written in a factual manner, and is consistent with ethical journalism practices; an article is defined as ‘fake’ if it is not ‘real’, including but not limited to satire, opinion pieces, and conspiracies.</p>
-		<br/>
 		<p style="text-align: justify">The labels in this dataset were analyzed and produced by <a href="http://www.opensources.co/" target="blank">OpenSources</a>, an organization that compiles professionally curated lists of unreliable or otherwise questionable sources. Each article has a varying set of word counts, varying from approximately 100 to 500 words on average. </p>
   </div>
 
@@ -71,13 +70,12 @@ body {font-size:16px;}
   <div class="w3-container" id="results" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Approach</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
-		<h4><b>Approach</b></h4>
-    <p style="text-align: justify">Our approach involved trying various combinations of vectorizers and learners, primarily from scikit-learn, to see which yielded the best accuracy. We used a bag-of-words model, counting the frequency of each word in an article to determine if it is a feature for training a classifier. The three vectorizers we used for this were the Count Vectorizer, TF-IDF Vectorizer, and Hashing Vectorizer; the four learners we used were Multinomial Bayes, Passive Aggressive Classifiers, Logistic Regression and Nearest Neighbor.</p>
+    <p style="text-align: justify">Our approach involved trying various combinations of vectorizers and learners, primarily from scikit-learn, to see which yielded the best accuracy. We used a bag-of-words model, counting the frequency of each word in an article to determine if it is a feature for training a classifier. The three vectorizers we used for this were the Count Vectorizer, TF-IDF Vectorizer, and Hashing Vectorizer; the four learners we used were ZeroR, Multinomial Bayes, Passive Aggressive Classifiers, Logistic Regression and Nearest Neighbor.</p>
   </div>
 
   <!-- Packages / Pricing Tables -->
   <div class="w3-container" id="takeaways" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-red"><b>Takeaways</b></h1>
+    <h1 class="w3-xxxlarge w3-text-red"><b>Results</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
 		<table id="accuracy">
 			<tr>
@@ -85,6 +83,11 @@ body {font-size:16px;}
 				<th class="w3-dark-grey w3-large w3-padding-16 w3-center">Classifier</th>
 				<th style="padding-right:10px" class="w3-dark-grey w3-large w3-padding-16 w3-center">Accuracy</th>
 			</tr>
+      <tr>
+        <th class="w3-light-grey w3-center w3-padding-16">Tf-idf</th>
+        <th class="w3-light-grey w3-center w3-padding-16">ZeroR</th>
+        <th class="w3-light-grey w3-center w3-padding-16">50.1%</th>
+      </tr>
 			<tr>
 				<th class="w3-light-grey w3-center w3-padding-16">Count</th>
 				<th class="w3-light-grey w3-center w3-padding-16">Multinomial NB</th>
@@ -118,10 +121,14 @@ body {font-size:16px;}
 			<tr>
 				<th class="w3-light-grey w3-center w3-padding-16">Hashing</th>
 				<th class="w3-light-grey w3-center w3-padding-16">Multinomial NB</th>
-				<th class="w3-light-grey w3-center w3-padding-16">93.9%</th>
+				<th class="w3-light-grey w3-center w3-padding-16">90.1%</th>
 			</tr>
 		</table>
-    <p>Some text our prices. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure</p>
+    <br />
+    <p style="text-align:justify">As can be seen above, we found that the combination of a TF-IDF Vectorizer and a Passive Aggressive Classifier with bigrams yielded the highest accuracy of 93.9%. </p>
+    <p style="text-align:justify">Additionally, our TF-IDF and Passive Aggressive Classifier provided some other interesting results: the top three words associated with fake articles were ‘October’, ‘Hillary’ and ‘share’, while the top three words associated with real articles were ‘said’, ‘says’ and ‘Fridays’.</p>
+    <p style="text-align:justify">More analysis of our findings can be found in our <a href="/report" target="blank">final report.</a></p>
+    <br />
   </div>
 
 <!-- End page content -->
