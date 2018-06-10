@@ -16,6 +16,10 @@ def predict():
     #query_df = pd.DataFrame(result)
     return jsonify(result)
 
+@app.route('/report')
+def report():
+	return render_template('report.html')
+
 #TODO: Need to make a pipeline that would take the dataset, put it into a vectorizer, and feed that into MultinnomialNB
 
     # try:
